@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import PokemonImageContainer from '../PokemonImageContainer'
 import PokemonStats from '../PokemonStats'
 import $ from 'jquery';
+import { Router, Route, Link } from 'react-router'
 
 import './styles.less'
 
@@ -42,6 +43,7 @@ class PokemonContainer extends React.Component {
 		} else {
 			return (
 				<div className="pokemon">
+					<Link to="/">Home</Link>
 					<PokemonStats
 						name={this.state.data.name}
 						id={this.state.data.id}
