@@ -4,6 +4,8 @@ import PokemonImageContainer from '../PokemonImageContainer'
 import PokemonStats from '../PokemonStats'
 import $ from 'jquery';
 
+import './styles.less'
+
 class PokemonContainer extends React.Component {
 	constructor() {
 		super();
@@ -11,8 +13,9 @@ class PokemonContainer extends React.Component {
 		this.getPokemon = this.getPokemon.bind(this);
 	}
 	getPokemon() {
+		const pokeUrl = 'http://pokeapi.co/api/v2/pokemon/' + this.props.params.pokedexNumber;
 		$.ajax({
-			url: 'http://pokeapi.co/api/v2/pokemon/169',
+			url: pokeUrl,
 			dataType: 'json',
 			cache: true,
 			success: function(data) {
@@ -31,16 +34,19 @@ class PokemonContainer extends React.Component {
 	render() {
 		if (!this.state.data.name) {
 			return (
-				<div className="loading">loading...</div>
+				<div className="loader-info">
+					<div className="spinner"></div>
+					<div className="loading">Loading...</div>
+				</div>
 			);
 		} else {
 			return (
 				<div className="pokemon">
-					<PokemonImageContainer sprites={this.state.data.sprites} />
 					<PokemonStats
 						name={this.state.data.name}
 						id={this.state.data.id}
 					/>
+					<PokemonImageContainer sprites={this.state.data.sprites} />
 				</div>
 			);
 		}

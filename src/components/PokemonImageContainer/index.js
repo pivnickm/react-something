@@ -2,6 +2,8 @@ import React from 'react'
 import ReactDOM from 'react-dom';
 import PokemonImage from '../PokemonImage'
 
+import './style.less'
+
 const PokemonImageContainer = ({
 	sprites,
 	...props
@@ -12,10 +14,11 @@ const PokemonImageContainer = ({
 			<PokemonImage key={spriteName} spriteUrl={url} />
 		);
 	});
-	console.log('sprites', spriteNodes);
 	return (
-		<div className="pokeonSprites">
-			{spriteNodes}
+		<div className="pokeon-sprites-wrapper">
+			<div className="pokeon-sprites">
+				{spriteNodes}
+			</div>
 		</div>
 	);
 };

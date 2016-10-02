@@ -11,7 +11,7 @@ const PokemonImage = ({
 		);
 	} else {
 		return (
-			<div>
+			<div className="sprite">
 				<img src={spriteUrl} />
 			</div>
 		);
