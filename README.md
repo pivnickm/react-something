@@ -8,6 +8,6 @@
 
 ## Goals
 
-- Twitter display maybe?
 - Find some interesting API to play with (pokemon or something?)
-- work on CSS skills.
+- Work on CSS skills.
+- Figure out how components should be done. Should I really make more components for every piece of data? Or is it okay for a component to manage some data and be presentational?
