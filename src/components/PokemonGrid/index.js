@@ -20,13 +20,13 @@ class PokemonContainer extends React.Component {
 			url: pokeUrl,
 			dataType: 'json',
 			cache: true,
-			success: function(data) {
+			success: data => {
 				console.log(data)
 				this.setState({ data:data });
-			}.bind(this),
-			error: function(xhr, status, err) {
+			},
+			error: (xhr, status, err) => {
 				console.error(this.props.url, status, err.toString());
-			}.bind(this)
+			}
 		});
 	}
 	componentDidMount() {
@@ -42,16 +42,16 @@ class PokemonContainer extends React.Component {
 				</div>
 			);
 		} else {
-			const pokemonItem = this.state.data.body.sort(function(a, b) {
-				return a["national-pokedex-number"] - b["national-pokedex-number"];
-			}).map(function(info) {
-				const pokemonNumber = info["national-pokedex-number"];
-				return (
-					<Link key={pokemonNumber} to={"/pokemon/" + pokemonNumber}>
-						<PokemonGridItem key={pokemonNumber} body={info} />
-					</Link>
-				);
-			});
+			const pokemonItem = this.state.data.body
+				.sort((a, b) => a["national-pokedex-number"] - b["national-pokedex-number"])
+				.map(info => {
+					const pokemonNumber = info["national-pokedex-number"];
+					return (
+						<Link key={pokemonNumber} to={`/pokemon/${pokemonNumber}`}>
+							<PokemonGridItem key={pokemonNumber} body={info} />
+						</Link>
+					);
+				});
 			return (
 				<div className="pokemon-grid">
 					{pokemonItem}

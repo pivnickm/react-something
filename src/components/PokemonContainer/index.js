@@ -14,18 +14,18 @@ class PokemonContainer extends React.Component {
 		this.getPokemon = this.getPokemon.bind(this);
 	}
 	getPokemon() {
-		const pokeUrl = 'http://pokeapi.co/api/v2/pokemon/' + this.props.params.pokedexNumber;
+		const pokeUrl = `http://pokeapi.co/api/v2/pokemon/${this.props.params.pokedexNumber}`;
 		$.ajax({
 			url: pokeUrl,
 			dataType: 'json',
 			cache: true,
-			success: function(data) {
-				console.log(data)
+			success: data => {
+				console.log(data);
 				this.setState({ data:data });
-			}.bind(this),
-			error: function(xhr, status, err) {
+			},
+			error: (xhr, status, err) => {
 				console.error(this.props.url, status, err.toString());
-			}.bind(this)
+			}
 		});
 	}
 	componentDidMount() {
