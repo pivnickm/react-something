@@ -2,13 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PokemonContainer from './components/PokemonContainer'
 import PokemonGrid from './components/PokemonGrid'
-import { Router, Route, Link, hashHistory } from 'react-router'
+import { Router, Route, hashHistory } from 'react-router'
 
 import './styles/global.less'
 
-const App = ({
-	...props
-}) => {
+const App = () => {
 	return (
 		<div>
 			<PokemonGrid />

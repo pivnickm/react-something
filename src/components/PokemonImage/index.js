@@ -1,9 +1,7 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React, { PropTypes } from 'react';
 
 const PokemonImage = ({
-	spriteUrl,
-	...props
+	spriteUrl
 }) => {
 	if (spriteUrl === null) {
 		return (
@@ -16,6 +14,10 @@ const PokemonImage = ({
 			</div>
 		);
 	}
+};
+
+PokemonImage.propTypes = {
+	spriteUrl: PropTypes.string
 };
 
 export default PokemonImage;

@@ -1,12 +1,10 @@
-import React from 'react'
-import ReactDOM from 'react-dom';
+import React, { PropTypes } from 'react';
 import PokemonImage from '../PokemonImage'
 
 import './style.less'
 
 const PokemonImageContainer = ({
-	sprites,
-	...props
+	sprites
 }) => {
 	const spriteNodes = Object.keys(sprites).map(spriteName => {
 		const url = sprites[spriteName];
@@ -21,6 +19,10 @@ const PokemonImageContainer = ({
 			</div>
 		</div>
 	);
+};
+
+PokemonImageContainer.propTypes = {
+	sprites: PropTypes.object
 };
 
 export default PokemonImageContainer

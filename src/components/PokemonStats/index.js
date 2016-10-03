@@ -1,12 +1,10 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React, { PropTypes } from 'react';
 
 import './style.less'
 
 const PokemonStats = ({
 	name,
-	id,
-	...props
+	id
 }) => {
 	return (
 		<div className="pokemon-info">
@@ -14,6 +12,11 @@ const PokemonStats = ({
 			<span className="pokemon-number"></span>
 		</div>
 	);
+};
+
+PokemonStats.propTypes = {
+	name: PropTypes.string,
+	id: PropTypes.number
 };
 
 export default PokemonStats;

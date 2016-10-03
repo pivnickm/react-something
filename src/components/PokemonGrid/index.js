@@ -1,13 +1,11 @@
-import React from 'react'
-import ReactDOM from 'react-dom';
-import PokemonImageContainer from '../PokemonImageContainer'
+import React, { PropTypes } from 'react';
 import PokemonGridItem from '../PokemonGridItem'
 import $ from 'jquery';
-import { Router, Route, Link } from 'react-router'
+import { Link } from 'react-router'
 
 import './styles.less'
 
-class PokemonContainer extends React.Component {
+class PokemonGrid extends React.Component {
 	constructor() {
 		super();
 		this.state = { data: {} };
@@ -43,9 +41,9 @@ class PokemonContainer extends React.Component {
 			);
 		} else {
 			const pokemonItem = this.state.data.body
-				.sort((a, b) => a["national-pokedex-number"] - b["national-pokedex-number"])
+				.sort((a, b) => a['national-pokedex-number'] - b['national-pokedex-number'])
 				.map(info => {
-					const pokemonNumber = info["national-pokedex-number"];
+					const pokemonNumber = info['national-pokedex-number'];
 					return (
 						<Link key={pokemonNumber} to={`/pokemon/${pokemonNumber}`}>
 							<PokemonGridItem key={pokemonNumber} body={info} />
@@ -59,6 +57,10 @@ class PokemonContainer extends React.Component {
 			);
 		}
 	}
+}
+
+PokemonGrid.propTypes = {
+	url: PropTypes.string
 };
 
-export default PokemonContainer
+export default PokemonGrid;

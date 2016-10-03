@@ -1,9 +1,8 @@
-import React from 'react'
-import ReactDOM from 'react-dom';
+import React, { PropTypes } from 'react';
 import PokemonImageContainer from '../PokemonImageContainer'
 import PokemonStats from '../PokemonStats'
 import $ from 'jquery';
-import { Router, Route, Link } from 'react-router'
+import { Link } from 'react-router'
 
 import './styles.less'
 
@@ -53,6 +52,11 @@ class PokemonContainer extends React.Component {
 			);
 		}
 	}
+}
+
+PokemonContainer.propTypes = {
+	params: PropTypes.object,
+	url: PropTypes.string
 };
 
 export default PokemonContainer

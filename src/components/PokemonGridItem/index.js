@@ -1,15 +1,13 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React, { PropTypes } from 'react';
 
 import './style.less'
 
 const PokemonGridItem = ({
-	body,
-	...props
+	body
 }) => {
-	const pokemonNumber = body["national-pokedex-number"];
-	const pokemonName = body["pokemon-name"];
-	const imageUrl = "../images/pokemon/sugimori/" + pokemonNumber + ".png";
+	const pokemonNumber = body['national-pokedex-number'];
+	const pokemonName = body['pokemon-name'];
+	const imageUrl = `../images/pokemon/sugimori/${pokemonNumber}.png`;
 
 	return (
 		<div className="pokemon-grid-item">
@@ -17,6 +15,10 @@ const PokemonGridItem = ({
 			<h3 className="pokemon-name">{pokemonNumber} {pokemonName}</h3>
 		</div>
 	);
+};
+
+PokemonGridItem.propTypes = {
+	body: PropTypes.object
 };
 
 export default PokemonGridItem;

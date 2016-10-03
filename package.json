@@ -34,6 +34,9 @@
     "webpack": "^1.13.2"
   },
   "devDependencies": {
-    "concurrently": "^2.2.0"
+    "concurrently": "^2.2.0",
+    "eslint": "^3.7.0",
+    "eslint-loader": "^1.5.0",
+    "eslint-plugin-react": "^6.3.0"
   }
 }
