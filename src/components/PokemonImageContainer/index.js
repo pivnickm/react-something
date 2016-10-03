@@ -9,7 +9,7 @@ const PokemonImageContainer = ({
 	const spriteNodes = Object.keys(sprites).map(spriteName => {
 		const url = sprites[spriteName];
 		return (
-			<PokemonImage key={spriteName} spriteUrl={url} />
+			<PokemonImage key={spriteName} spriteUrl={url} spriteName={spriteName} />
 		);
 	});
 	return (

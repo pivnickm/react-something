@@ -8,31 +8,44 @@ import './styles.less'
 class PokemonGrid extends React.Component {
 	constructor() {
 		super();
-		this.state = { data: {} };
+		this.state = {
+			data: {},
+			fetching: true
+		};
 		this.getPokemon = this.getPokemon.bind(this);
 	}
-	getPokemon() {
-		const pokeUrl = 'https://www.tablerig.com/tables/calpaterson/pokemon-with-images';
+	getPokemon(url) {
+		const pokeUrl = url || 'http://pokeapi.co/api/v2/pokemon/';
 
+		this.setState({ fetching: true });
 		$.ajax({
 			url: pokeUrl,
 			dataType: 'json',
 			cache: true,
 			success: data => {
 				console.log(data)
-				this.setState({ data:data });
+				this.setState({
+					data: data,
+					fetching: false
+				});
 			},
 			error: (xhr, status, err) => {
 				console.error(this.props.url, status, err.toString());
 			}
 		});
 	}
+	nextClick(nextPage) {
+		this.getPokemon(nextPage);
+	}
+	prevClick(previousPage) {
+		this.getPokemon(previousPage);
+	}
 	componentDidMount() {
 		this.getPokemon();
 	}
 
 	render() {
-		if (!this.state.data.approximate_number_of_rows) {
+		if (this.state.fetching) {
 			return (
 				<div className="loader-info">
 					<div className="spinner"></div>
@@ -40,19 +53,26 @@ class PokemonGrid extends React.Component {
 				</div>
 			);
 		} else {
-			const pokemonItem = this.state.data.body
-				.sort((a, b) => a['national-pokedex-number'] - b['national-pokedex-number'])
-				.map(info => {
-					const pokemonNumber = info['national-pokedex-number'];
+			const pokemonItem = this.state.data.results.map(info => {
+					const pokemonNumber = info.url.split('/').filter(Boolean)[5];
+					const pokemonName = info.name;
 					return (
 						<Link key={pokemonNumber} to={`/pokemon/${pokemonNumber}`}>
-							<PokemonGridItem key={pokemonNumber} body={info} />
+							<PokemonGridItem
+								key={pokemonNumber}
+								number={pokemonNumber}
+								name={pokemonName}
+							/>
 						</Link>
 					);
 				});
 			return (
-				<div className="pokemon-grid">
-					{pokemonItem}
+				<div>
+					<div className="pokemon-grid">
+						{pokemonItem}
+					</div>
+					<span onClick={this.prevClick.bind(this, this.state.data.previous)} className="pagination previous">Previous</span>
+					<span onClick={this.nextClick.bind(this, this.state.data.next)} className="pagination next">Next</span>
 				</div>
 			);
 		}
