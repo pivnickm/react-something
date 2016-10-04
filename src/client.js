@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import PokemonContainer from './components/PokemonContainer'
-import PokemonGrid from './components/PokemonGrid'
-import { Router, Route, hashHistory } from 'react-router'
+import PokemonContainer from './containers/PokemonContainer'
+import PokemonGrid from './containers/PokemonGrid'
+import { Router, Route, browserHistory } from 'react-router'
 
 import './styles/global.less'
 
@@ -21,7 +21,7 @@ Cras dignissim placerat est, in suscipit urna accumsan in. Mauris eu sapien effi
 }
 
 ReactDOM.render((
-		<Router history={hashHistory}>
+		<Router history={browserHistory}>
 			<Route path="/" component={App} />
 			<Route path="/pokemon/:pokedexNumber" component={PokemonContainer} />
 		</Router>

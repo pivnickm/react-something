@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import PokemonImageContainer from '../PokemonImageContainer'
-import PokemonStats from '../PokemonStats'
+import PokemonStats from '../../components/PokemonStats'
 import $ from 'jquery';
 import { Link } from 'react-router'
 

@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import PokemonGridItem from '../PokemonGridItem'
+import PokemonGridItem from '../../components/PokemonGridItem'
 import $ from 'jquery';
 import { Link } from 'react-router'
 
